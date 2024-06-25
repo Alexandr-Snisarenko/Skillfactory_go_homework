@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log/slog"
 	"strconv"
 )
 
@@ -20,6 +21,7 @@ func StartScaner(ch chan<- int) {
 		}
 
 		if inVal == "exit" {
+			slog.Debug("Scaner: получена команда exit", "thread", "main")
 			break
 		}
 
@@ -28,6 +30,7 @@ func StartScaner(ch chan<- int) {
 			continue
 		}
 
+		slog.Debug("Scaner: передача числа в канал данных pipeline ", "thread", "main")
 		ch <- val
 	}
 
